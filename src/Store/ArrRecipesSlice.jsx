@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initRecipe = {
-    // value: [
+     value: [
     //     { 
     //         id: 1, 
     //         name: 'פסטה ברוטב עגבניות', 
