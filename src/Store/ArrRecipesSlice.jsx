@@ -1,34 +1,34 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initRecipe = {
-    value: [
-        { 
-            id: 1, 
-            name: 'פסטה ברוטב עגבניות', 
-            prepTime: '20 ', 
-            ingredients: ['פסטה', 'רוטב עגבניות', 'תבלינים'], 
-            category: 'פרווה', 
-            isFavorite: false,
-            image: '/images/Pasta.jpg.webp',
-            instructions: [
-                'בשל את הפסטה לפי הוראות היצרן.',
-                'חממים את הרוטב בסיר, מתבלים לפי טעמך.',
-                'מערבבים את הפסטה עם הרוטב ויוצרים מנות.'
-            ]
-        },
-        { 
-            id: 2, 
-            name: 'קארי עוף', 
-            prepTime: ' 40 ', 
-            ingredients: ['עוף', 'קוקוס', 'תבלינים'], 
-            category: 'בשרי', 
-            isFavorite: false,
-            image: '/images/chicken.webp',
-            instructions: [
-                'חממים שמן בסיר ומטגנים את העוף עד שהוא שחום.',
-                'מוסיפים את החלב קוקוס והתבלינים, מבשלים על להבה נמוכה עד שהעוף רך.'
-            ]
-        },
+    // value: [
+    //     { 
+    //         id: 1, 
+    //         name: 'פסטה ברוטב עגבניות', 
+    //         prepTime: '20 ', 
+    //         ingredients: ['פסטה', 'רוטב עגבניות', 'תבלינים'], 
+    //         category: 'פרווה', 
+    //         isFavorite: false,
+    //         image: '/images/Pasta.jpg.webp',
+    //         instructions: [
+    //             'בשל את הפסטה לפי הוראות היצרן.',
+    //             'חממים את הרוטב בסיר, מתבלים לפי טעמך.',
+    //             'מערבבים את הפסטה עם הרוטב ויוצרים מנות.'
+    //         ]
+    //     },
+    //     { 
+    //         id: 2, 
+    //         name: 'קארי עוף', 
+    //         prepTime: ' 40 ', 
+    //         ingredients: ['עוף', 'קוקוס', 'תבלינים'], 
+    //         category: 'בשרי', 
+    //         isFavorite: false,
+    //         image: '/images/chicken.webp',
+    //         instructions: [
+    //             'חממים שמן בסיר ומטגנים את העוף עד שהוא שחום.',
+    //             'מוסיפים את החלב קוקוס והתבלינים, מבשלים על להבה נמוכה עד שהעוף רך.'
+    //         ]
+    //     },
         { 
             id: 3, 
             name: 'מרק ירקות', 
