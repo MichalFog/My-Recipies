@@ -83,6 +83,7 @@ const AppBar = () => {
                 zIndex: 10,
                 minWidth: '135px',
               }}
+             onMouseLeave={() => setShowFavorites(false)}  
             >
               {favoriteRecipes.length > 0 ? (
                 favoriteRecipes.map((recipe) => (
