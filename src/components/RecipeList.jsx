@@ -2,56 +2,26 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
-import { Card, CardContent, Typography, Button, Box, Grid, Dialog, Paper, TextField, Select, MenuItem, Checkbox, FormControlLabel } from '@mui/material';
+import { Card, CardContent, Typography,  Box, Grid, Dialog,  } from '@mui/material';
 import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
 import { createRecipe } from '../Store/ArrRecipesSlice';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
 import { useForm } from 'react-hook-form';
+import useAddRecipe from '../components/useAddRecipe';  
+
 const RecipeList = () => {
     const { register, handleSubmit, setValue, formState: { errors } } = useForm();
     const recipes = useSelector(state => state.ArrRecipes.value);
     const dispatch = useDispatch();
-    const [open, setOpen] = useState(false);
     const [recipe, setRecipe] = useState({ name: '', prepTime: '', ingredients: '', category: '', isFavorite: false, instructions: '', image: '' });
+    const { openCard, closeCard, open, form } = useAddRecipe();  
 
-    const cardOpen = () => {
-        setOpen(true);
-    };
-
-    const cardClose = () => {
-        setOpen(false);
-    };
-
-    const cardChange = (e) => {
-        const { name, value, type, checked } = e.target;
-        setRecipe({ ...recipe, [name]: type === 'checkbox' ? checked : value });
-    };
-    const onSubmit = (data) => {
-        const newRecipe = {
-            ...recipe,
-            id: recipes.length + 1,
-            ingredients: recipe.ingredients.split('\n'),
-            instructions: recipe.instructions.split('\n')
-        };
-        dispatch(createRecipe(newRecipe));
-        setRecipe({
-            name: '',
-            prepTime: '',
-            ingredients: '',
-            category: '',
-            isFavorite: false,
-            instructions: '',
-            image: ''
-        });
-        cardClose();
-    };
-
+    
     return (
         <Box sx={{ padding: 4 }}>
             <Typography variant="h4" sx={{ marginBottom: 4, fontWeight: 'bold', textAlign: 'center' }}>
-                {/* רשימת המתכונים */}
             </Typography>
             <Grid container spacing={4}>
                 {recipes.map(recipe => (
@@ -151,7 +121,7 @@ const RecipeList = () => {
                             height: '430px',
                             backgroundColor: '#f8f8f8',
                         }}
-                        onClick={cardOpen}
+                        onClick={openCard}
                     >
                         <AddIcon fontSize="large" sx={{ color: 'blue', marginBottom: 1 }} />
                         <Typography variant="body1" sx={{ fontWeight: 'bold', color: 'blue' }}>
@@ -163,156 +133,12 @@ const RecipeList = () => {
 
             <Dialog
                 open={open}
-                onClose={cardClose}
+                onClose={closeCard}
                 PaperProps={{
                     style: { borderRadius: 16, padding: '20px', maxWidth: '500px', margin: 'auto' },
                 }}
             >
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <Paper elevation={3} sx={{ padding: 4 }}>
-                        <Typography variant="h5" gutterBottom align="center">
-                            הוסף מתכון חדש
-                        </Typography>
-                        <Grid container spacing={2}>
-                            <Grid item xs={12}>
-                                <TextField
-                                    {...register("name", { required: true })} 
-                                    fullWidth
-                                    label="שם המתכון *"
-                                    variant="outlined"
-                                    name="name"
-                                    // value={recipe.name}
-                                    // onChange={cardChange}
-                                    sx={{
-                                        '& .MuiOutlinedInput-root': {
-                                            '&.Mui-focused fieldset': {
-                                                borderColor: !recipe.name ? 'red' : 'green',
-                                            },
-                                        },
-                                    }}
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    {...register("prepTime", { required: true })}
-                                    fullWidth
-                                    label="זמן הכנה"
-                                    variant="outlined"
-                                    name="prepTime"
-                                    // value={recipe.prepTime}
-                                    // onChange={cardChange}
-                                    sx={{
-                                        '& .MuiOutlinedInput-root': {
-                                            '&.Mui-focused fieldset': {
-                                                borderColor: 'green',
-                                            },
-                                        },
-                                    }}
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    {...register("ingredients", { required: true })}
-                                    fullWidth
-                                    label="רכיבים (כל רכיב בשורה נפרדת)"
-                                    variant="outlined"
-                                    name="ingredients"
-                                    value={recipe.ingredients}
-                                    onChange={cardChange}
-                                    multiline
-                                    rows={4}
-                                    sx={{
-                                        '& .MuiOutlinedInput-root': {
-                                            '&.Mui-focused fieldset': {
-                                                borderColor: 'green',
-                                            },
-                                        },
-                                    }}
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    {...register("instructions", { required: true })}
-                                    fullWidth
-                                    label="הוראות הכנה (כל שלב בשורה נפרדת)"
-                                    variant="outlined"
-                                    name="instructions"
-                                    multiline
-                                    rows={4}
-                                    sx={{
-                                        '& .MuiOutlinedInput-root': {
-                                            '&.Mui-focused fieldset': {
-                                                borderColor: 'green',
-                                            },
-                                        },
-                                    }}
-                                />
-
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    fullWidth
-                                    label="קישור לתמונה"
-                                    variant="outlined"
-                                    name="image"
-                                    // value={recipe.image}
-                                    {...register("img")}
-                                    // onChange={cardChange}
-                                    sx={{
-                                        '& .MuiOutlinedInput-root': {
-                                            '&.Mui-focused fieldset': {
-                                                borderColor: 'green',
-                                            },
-                                        },
-                                    }}
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <Typography variant="subtitle1">קטגוריה</Typography>
-                                <Select
-                                    fullWidth
-                                    name="category"
-                                    {...register("category", { required: true })}
-                                    displayEmpty
-                                >
-                                    <MenuItem value="" disabled>בחר קטגוריה</MenuItem>
-                                    <MenuItem value="בשרי">בשרי</MenuItem>
-                                    <MenuItem value="חלבי">חלבי</MenuItem>
-                                    <MenuItem value="פרווה">פרווה</MenuItem>
-                                </Select>
-                            </Grid>
-
-                            <Grid item xs={12}>
-                                <FormControlLabel
-                                    control={
-                                        <Checkbox
-                                            name="isFavorite"
-                                            checked={recipe.isFavorite}
-                                            // onChange={cardChange}
-                                            {...register("isFavorite")}
-                                            sx={{
-                                                color: 'green',
-                                                '&.Mui-checked': {
-                                                    color: 'green',
-                                                },
-                                            }}
-                                        />
-                                    }
-                                    label="מועדף"
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <Button
-                                    variant="contained"
-                                    type="submit"
-                                    sx={{ width: "400px" }}
-                                >
-                                    הוסף מתכון
-                                </Button>
-                            </Grid>
-                        </Grid>
-                    </Paper>
-                </form>
+                {form}
             </Dialog>
         </Box>
     );

@@ -9,7 +9,7 @@ const initRecipe = {
             ingredients: ['פסטה', 'רוטב עגבניות', 'תבלינים'], 
             category: 'פרווה', 
             isFavorite: false,
-            image: '/images/Pasta.jpg.webp',
+            image: '/images/pasta.webp',
             instructions: [
                 'בשל את הפסטה לפי הוראות היצרן.',
                 'חממים את הרוטב בסיר, מתבלים לפי טעמך.',
