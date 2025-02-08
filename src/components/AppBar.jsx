@@ -22,12 +22,13 @@ const AppBar = () => {
   const { register, handleSubmit, setValue, formState: { errors } } = useForm();
 
   const onSubmit = (data) => {
-
+    const imageUrl = data.image || '/HomePage.webp';
     const newRecipe = {
       ...data,
       id: recipes.length + 1,
       ingredients: data.ingredients.split('\n'),
       instructions: data.instructions.split('\n'),
+      image: imageUrl,  
     };
 
     dispatch(createRecipe(newRecipe));
@@ -65,7 +66,7 @@ const AppBar = () => {
             />
           )}
           {user.name && (
-            <Box sx={{ position: 'relative' }} onMouseEnter={() => setShowFavorites(true)} onMouseLeave={() => setShowFavorites(false)}>
+            <Box sx={{ position: 'relative' }} onMouseEnter={() => setShowFavorites(true)} onMouseLeave={() => setShowFavorites(true)}>
               <Badge badgeContent={favoriteRecipes.length} sx={{ '& .MuiBadge-badge': { backgroundColor: 'black', color: 'white', fontSize: '0.8rem' } }} showZero overlap="circular">
                 <FavoriteIcon sx={{ color: 'white', fontSize: '1.5rem' }} />
               </Badge>
