@@ -12,7 +12,7 @@ const useAddRecipe=()=>
     const recipes = useSelector((state) => state.ArrRecipes.value);
     const { register, handleSubmit, setValue, formState: { errors } } = useForm();
     const onSubmit = (data) => {
-        const imageUrl = data.image || '/HomePage.webp';
+        const imageUrl = data.image || '/images/default.webp';
         const newRecipe = {
           ...data,
           id: recipes.length + 1,
