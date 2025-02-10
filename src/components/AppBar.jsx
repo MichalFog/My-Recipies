@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import PostAddIcon from '@mui/icons-material/PostAdd';
 import { useSelector } from 'react-redux';
-import {useAddRecipe} from '../components/useAddRecipe';  
+import useAddRecipe from '../components/useAddRecipe';
 
 const AppBar = () => {
   const [showFavorites, setShowFavorites] = useState(false);
