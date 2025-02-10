@@ -6,7 +6,6 @@ const LazyRecipeList = React.lazy(() => import('./components/RecipeList'));
 const LazyLogin=React.lazy(()=> import('./components/Login'));
 const LazyRecipeDetails=React.lazy(()=> import('./components/RecipeDetails'));
 
-
 function App() {
   return (
     <>

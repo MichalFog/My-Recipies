@@ -32,6 +32,7 @@ const useAddRecipe=()=>
       const closeCard = () => {
         setOpen(false);
       };
+
       return {
         openCard,
         closeCard,

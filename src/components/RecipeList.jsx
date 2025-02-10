@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
 import { Card, CardContent, Typography,  Box, Grid, Dialog,  } from '@mui/material';
 import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
-import { createRecipe } from '../Store/ArrRecipesSlice';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
@@ -12,10 +11,7 @@ import { useForm } from 'react-hook-form';
 import useAddRecipe from '../components/useAddRecipe';  
 
 const RecipeList = () => {
-    const { register, handleSubmit, setValue, formState: { errors } } = useForm();
     const recipes = useSelector(state => state.ArrRecipes.value);
-    const dispatch = useDispatch();
-    const [recipe, setRecipe] = useState({ name: '', prepTime: '', ingredients: '', category: '', isFavorite: false, instructions: '', image: '' });
     const { openCard, closeCard, open, form } = useAddRecipe();  
 
     
